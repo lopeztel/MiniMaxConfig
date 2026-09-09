@@ -227,6 +227,7 @@ nmap_leader('sw', '<Cmd>lua MiniSessions.write()<CR>',          'Write current')
 -- t is for 'Terminal'
 nmap_leader('tT', '<Cmd>horizontal term<CR>', 'Terminal (horizontal)')
 nmap_leader('tt', '<Cmd>vertical term<CR>',   'Terminal (vertical)')
+-- nmap_leader('tt', '<Cmd>ToggleTerm<CR>',   'Terminal (floating)')
 
 -- v is for 'Visits'. Common usage:
 -- - `<Leader>vv` - add    "core" label to current file.
@@ -246,4 +247,7 @@ nmap_leader('vv', '<Cmd>lua MiniVisits.add_label("core")<CR>',    'Add "core" la
 nmap_leader('vV', '<Cmd>lua MiniVisits.remove_label("core")<CR>', 'Remove "core" label')
 nmap_leader('vl', '<Cmd>lua MiniVisits.add_label()<CR>',          'Add label')
 nmap_leader('vL', '<Cmd>lua MiniVisits.remove_label()<CR>',       'Remove label')
+
+--Toggleterm
+  vim.keymap.set('t', '<C-o>', [[<C-\><C-n>]], { desc = 'terminal->normal mode' })
 -- stylua: ignore end
