@@ -122,11 +122,37 @@ now_if_args(function()
 	-- the rules provided by 'nvim-lspconfig'.
 	-- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
 	-- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
+
+  vim.lsp.config('nixd', {
+    cmd = { "nixd" },
+    filetypes = { "nix" },
+    root_markers = { "flake.nix", ".git" },
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = "import <nixpkgs> { }",
+        },
+        formatting = {
+          command = { "nixfmt" },
+        },
+        options = {
+          nixos = {
+            expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.<hostname>.options',
+          },
+          home_manager = {
+            -- NOTE: First one applies to only home-manager standalone
+            expr = '(builtins.getFlake (toString ./.)).homeConfigurations."<username>@<hostname>".options',
+          },
+        },
+      },
+    },
+  })
+
 	vim.lsp.enable({
 		-- For example, if `lua-language-server` is installed, use `'lua_ls'` entry
 		"clangd",
 		"harper_ls",
-		"lua-language-server",
+		"lua_ls",
 		"marksman",
 		"nixd",
 		"pyright",
