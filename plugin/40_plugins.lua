@@ -123,30 +123,30 @@ now_if_args(function()
 	-- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
 	-- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
 
-  vim.lsp.config('nixd', {
-    cmd = { "nixd" },
-    filetypes = { "nix" },
-    root_markers = { "flake.nix", ".git" },
-    settings = {
-      nixd = {
-        nixpkgs = {
-          expr = "import <nixpkgs> { }",
-        },
-        formatting = {
-          command = { "nixfmt" },
-        },
-        options = {
-          nixos = {
-            expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.<hostname>.options',
-          },
-          home_manager = {
-            -- NOTE: First one applies to only home-manager standalone
-            expr = '(builtins.getFlake (toString ./.)).homeConfigurations."<username>@<hostname>".options',
-          },
-        },
-      },
-    },
-  })
+	vim.lsp.config("nixd", {
+		cmd = { "nixd" },
+		filetypes = { "nix" },
+		root_markers = { "flake.nix", ".git" },
+		settings = {
+			nixd = {
+				nixpkgs = {
+					expr = "import <nixpkgs> { }",
+				},
+				formatting = {
+					command = { "nixfmt" },
+				},
+				options = {
+					nixos = {
+						expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.<hostname>.options",
+					},
+					home_manager = {
+						-- NOTE: First one applies to only home-manager standalone
+						expr = '(builtins.getFlake (toString ./.)).homeConfigurations."<username>@<hostname>".options',
+					},
+				},
+			},
+		},
+	})
 
 	vim.lsp.enable({
 		-- For example, if `lua-language-server` is installed, use `'lua_ls'` entry
@@ -245,8 +245,20 @@ Config.now(function()
 		-- 'https://github.com/Shatur/neovim-ayu',
 		-- 'https://github.com/ellisonleao/gruvbox.nvim',
 		"https://github.com/RRethy/base16-nvim",
+    "https://github.com/gbprod/nord.nvim",
 	})
 
 	-- Enable only one
-	vim.cmd("color base16-nord")
+	vim.o.background = "dark"
+	vim.cmd("color nord")
+
+	vim.api.nvim_create_user_command("ThemeDay", function()
+		vim.o.background = "light"
+		vim.cmd.colorscheme("base16-nord-light")
+	end, {})
+
+	vim.api.nvim_create_user_command("ThemeNight", function()
+		vim.o.background = "dark"
+		vim.cmd.colorscheme("nord")
+	end, {})
 end)
