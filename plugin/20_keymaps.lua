@@ -250,4 +250,18 @@ nmap_leader('vL', '<Cmd>lua MiniVisits.remove_label()<CR>',       'Remove label'
 
 --Toggleterm
   vim.keymap.set('t', '<C-o>', [[<C-\><C-n>]], { desc = 'terminal->normal mode' })
+
+-- ESC with no highlight
+
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
+  silent = true,
+})
+
+vim.keymap.set("i", "<Esc>", function()
+  vim.cmd("nohlsearch")
+  return "<Esc>"
+end, {
+  expr = true,
+  silent = true,
+})
 -- stylua: ignore end
