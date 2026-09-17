@@ -245,7 +245,7 @@ Config.now(function()
 		-- 'https://github.com/Shatur/neovim-ayu',
 		-- 'https://github.com/ellisonleao/gruvbox.nvim',
 		"https://github.com/RRethy/base16-nvim",
-    "https://github.com/gbprod/nord.nvim",
+		"https://github.com/gbprod/nord.nvim",
 	})
 
 	-- Enable only one
