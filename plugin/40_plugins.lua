@@ -250,6 +250,12 @@ Config.now(function()
 
 	-- Enable only one
 	vim.o.background = "dark"
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		pattern = "nord",
+		callback = function()
+			vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", { link = "MiniStarterItem" })
+		end,
+	})
 	vim.cmd("color nord")
 
 	vim.api.nvim_create_user_command("ThemeDay", function()
